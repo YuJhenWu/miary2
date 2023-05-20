@@ -1,0 +1,16 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="/" ><h1> <img src="../../public/images/logo.png" width="50" height="50" /> <%= title %></h1></a>
+
+    <div>
+      <% if(username) { %>
+        <div class="">
+          <span class="text-light">Hello, <%= username + '!' %></span>
+          <a class="btn btn-outline-light my-2 my-sm-0" href="/user/logout">登出</a>
+        </div>
+      <% } else { %>
+        <a class="btn btn-outline-light my-2 my-sm-0" href="/user/login">登入</a>
+        <a class="btn btn-outline-warning my-2 my-sm-0" href="/user/register">註冊</a>
+      <% } %>
+    </div>
+  </nav>
+  

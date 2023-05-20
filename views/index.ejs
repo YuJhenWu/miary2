@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('template/head') %>
+    <!--<link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    
+  </head>
+    <%- include('template/navbar') %>
+    <div class="container mx-auto mt-3" style="width: 100%;">
+
+    <% if(username) { %>
+      <div class="alert alert-warning" role="alert">
+        <p>Welcome to <%= title %></p>
+      </div>
+
+      <form method="POST" action="/comments">
+        <div class="form-group">
+          <div class="text-dark">留言內容</div>
+          <textarea name="content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">送出留言</button>
+      </form>
+    <% } else { %>
+      <div class="alert alert-warning" role="alert">留言請先登入</div>
+    <% } %>
+    
+    <div class="card-container d-flex flex-wrap"></div>
+    <%; comments.forEach(function(comment) { %>
+      <div class="card m-2" style="height: 16rem;">
+        <div class="card-header">
+          <h5 class="card-title"><%= comment.nickname %></h5>
+          <h6 class="card-subtitle text-muted"><%= moment(comment.created_at).format(shortDateFormat) %></h6>
+          <!-- 判斷使用者的 username 和 comment 的 username 是否相同-->
+          <% if (username === comment.username) {%>
+          <!-- 只有本人才會看到刪除鍵和編輯鍵 -->
+          <a href="/comments/update_comments/<%= comment.id %>" class="card-link">編輯</a>
+          <a href="/comments/delete_comments/<%= comment.id %>" class="card-link">刪除</a>
+          <% } %>
+        </div>
+        <div class="card-body" style="overflow:scroll; overflow-x:hidden;">
+          <p class="card-text" ><%= comment.content %></p>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+    
+</html>

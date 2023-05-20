@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('template/head') %>
+</head>
+  <%- include('template/navbar') %>
+
+  <div class="container mx-auto mt-4" style="width: 100%;">
+    <!-- 若沒有錯誤會回傳一個空陣列 [] -->
+    <% if (errorMessage.length > 0) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= errorMessage %>
+    </div>
+    <% } %>
+    <!-- 前端驗證 -->
+    <% if (username === comment.username) { %>
+      <form method="POST" action="/comments/update_comments/<%= comment.id %>">
+        <div class="form-group">
+          <label>編輯文章</label>
+          <div class="text-dark">編輯留言</div>
+          <textarea name="content" class="form-control"></textarea>
+        </div>
+        <button type="submit" class="btn btn-dark">提交</button>
+      </form>
+    <% } else { %>
+      <div>你沒有修改權限！</div>
+    <% } %>
+  </div>
+
+</html>
