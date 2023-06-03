@@ -7,7 +7,7 @@ var logger = require('morgan');
 var session = require('express-session');
 // 引入 db 資料庫: mysql 模組 & 連線資料
 const db = require('./models/db')
-// 記得要引入 body-parser 才能使用
+// 引入 body-parser
 const bodyParser = require('body-parser')
 // 引入 connect-flash
 const flash = require('connect-flash');

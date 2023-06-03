@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!--加入Bootstrap CSS-->
   <%- include('../template/head') %>
 </head>
+  <!--加入導覽列-->
   <%- include('../template/navbar') %>
 
   <div class="container mx-auto mt-3" style="width: 100%;">
      <!-- 若沒有錯誤會回傳一個空陣列 [] -->
      <% if (errorMessage && errorMessage.length > 0) { %>
+      <!--顯示來自後端錯誤訊息-->
       <div class="alert alert-warning alert-dismissible fade show" role="alert">
         <strong><%= errorMessage %></strong> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -16,12 +19,14 @@
       </div>
     <% } %>
     <form method="POST" action="/user/login">
+      <!--輸入帳號Username-->
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Username: </label>
         <div class="col-sm-10">
           <input class="form-control" name="username">
         </div>
       </div>
+      <!--輸入密碼password-->
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">Password: </label>
         <div class="col-sm-10">

@@ -2,19 +2,23 @@
 <html>
 
 <head>
+  <!--加入Bootstrap CSS-->
   <%- include('template/head') %>
 </head>
+  <!--加入導覽列-->
   <%- include('template/navbar') %>
 
   <div class="container mx-auto mt-4" style="width: 100%;">
     <!-- 若沒有錯誤會回傳一個空陣列 [] -->
     <% if (errorMessage.length > 0) { %>
+    <!--顯示來自後端錯誤訊息-->
     <div class="alert alert-danger" role="alert">
       <%= errorMessage %>
     </div>
     <% } %>
-    <!-- 前端驗證 -->
+    <!-- 前端驗證是否為相同帳號 -->
     <% if (username === comment.username) { %>
+      <!--相同帳號顯示編輯button -->
       <form method="POST" action="/comments/update_comments/<%= comment.id %>">
         <div class="form-group">
           <label>編輯文章</label>
@@ -24,6 +28,7 @@
         <button type="submit" class="btn btn-dark">提交</button>
       </form>
     <% } else { %>
+      <!--不同帳號-->
       <div>你沒有修改權限！</div>
     <% } %>
   </div>

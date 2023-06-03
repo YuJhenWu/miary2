@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <!--加入Bootstrap CSS-->
     <%- include('template/head') %>
-    <!--<link rel='stylesheet' href='/stylesheets/style.css' /> -->
     
   </head>
+    <!--加入導覽列-->
     <%- include('template/navbar') %>
     <div class="container mx-auto mt-3" style="width: 100%;">
-
+    
     <% if(username) { %>
+      <!--登入才能看到留言button-->
       <div class="alert alert-warning" role="alert">
         <p>Welcome to <%= title %></p>
       </div>
@@ -21,9 +23,10 @@
         <button type="submit" class="btn btn-dark">送出留言</button>
       </form>
     <% } else { %>
+      <!--沒有登入-->
       <div class="alert alert-warning" role="alert">留言請先登入</div>
     <% } %>
-    
+    <!--顯示留言版內容-->
     <div class="card-container d-flex flex-wrap"></div>
     <%; comments.forEach(function(comment) { %>
       <div class="card m-2" style="height: 16rem;">
@@ -32,7 +35,7 @@
           <h6 class="card-subtitle text-muted"><%= moment(comment.created_at).format(shortDateFormat) %></h6>
           <!-- 判斷使用者的 username 和 comment 的 username 是否相同-->
           <% if (username === comment.username) {%>
-          <!-- 只有本人才會看到刪除鍵和編輯鍵 -->
+          <!-- 只有本人才會看到刪除和編輯button -->
           <a href="/comments/update_comments/<%= comment.id %>" class="card-link">編輯</a>
           <a href="/comments/delete_comments/<%= comment.id %>" class="card-link">刪除</a>
           <% } %>
